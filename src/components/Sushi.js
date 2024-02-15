@@ -1,20 +1,28 @@
 import React from "react";
 
-function Sushi(props) {
+function Sushi({food, handleEatSushi}) {
+
+  function handleClick() {
+    if(!food.eaten) {
+      handleEatSushi(food);
+    } else {
+      alert("This sushi has already been eaten!")
+    }
+  }
+
   return (
     <div className="sushi">
-      <div className="plate" onClick={/* Give me a callback! */ null}>
-        {/* Tell me if this sushi has been eaten! */}
-        {false ? null : (
+      <div className="plate" onClick={handleClick}>
+        {food.eaten ? null : (
           <img
-            src={/* Give me an image source! */ null}
-            alt={/* Give me a name! */ "Sushi"}
+            src={food.img_url}
+            alt={food.name}
             width="100%"
           />
         )}
       </div>
       <h4 className="sushi-details">
-        {/* Give me a name! */} - ${/* Give me a price! */}
+        {food.name} - ${food.price}
       </h4>
     </div>
   );
